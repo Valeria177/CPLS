@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calmness</string>
+    <string name="app_name_after">Register</string>
+    <string name="text_bottom">Войдите в свою учётную запись</string>
+    <string name="btnSignIn">Уже есть аккаунт?</string>
+    <string name="btnRegistr">Регистрация</string>
+    <string name="btnSignInForm">Войти</string>
+
+</resources>
