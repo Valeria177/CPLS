@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CPTestLS">
         <activity
+            android:name=".SuccessRegister"
+            android:exported="true" />
+        <activity
+            android:name=".GoLogin"
+            android:exported="true" />
+        <activity
             android:name=".Test"
             android:exported="true" />
         <activity
