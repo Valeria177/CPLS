@@ -8,10 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class AlexApplication {
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlexApplication.class, args);

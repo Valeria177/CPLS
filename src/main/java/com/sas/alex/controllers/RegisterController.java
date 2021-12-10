@@ -1,81 +1,108 @@
 package com.sas.alex.controllers;
 
 
+import com.sas.alex.dto.auth.request.LoginRequest;
+import com.sas.alex.dto.auth.response.JwtResponse;
+import com.sas.alex.dto.auth.response.MessageResponse;
+import com.sas.alex.dto.auth.request.SignupRequest;
+import com.sas.alex.persist.Role;
+import com.sas.alex.persist.RoleRepository;
 import com.sas.alex.persist.User;
+
 import com.sas.alex.persist.UserRepository;
-import com.sas.alex.service.UserRep;
+import com.sas.alex.security.UserDetailsImpl;
+import com.sas.alex.security.jwt.JwtUtils;
 import com.sas.alex.service.UserService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import static org.hibernate.criterion.Restrictions.and;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/reg")
 public class RegisterController {
 
     private final UserService userService;
 
     @Autowired
-    public RegisterController(UserService userService){
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    public RegisterController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public List<User> list(){
-        return userService.allUsers();
+
+    @PostMapping("/signin")
+    public ResponseEntity<JwtResponse> authUser(@Valid @RequestBody LoginRequest loginRequest){
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                roles));
+
     }
 
-    /*@PostMapping("/register")
-    public ResponseEntity<?> registerNewUser(@Valid UserRep userRep, BindingResult  bindingResult){
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    @PostMapping("/register")
+    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (userRepository.existsByUsername(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: email is already taken!"));
         }
-        else {
-            userService.create(userRep);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
+        //Create new user
+        User user = new User(
+                signUpRequest.getUsername(),
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getSex(),
+                signUpRequest.getEmail());
 
-    }*/
+        Set<Role> roles = new HashSet<>();
 
-    @DeleteMapping("/user/{id}")
-    @ApiOperation("Удаление пользователя по id")
-    public void delete(@PathVariable Long id){
-        userService.deleteById(id);
-    }
+        roles.add(roleRepository.getById((long) 1));
+        user.setRoles(roles);
+        userRepository.save(user);
 
-    @GetMapping("/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody Map<String, Object> register, UserRepository userRepository){
-
-        if (register.containsKey("username")
-                & register.containsKey("password")
-                & register.containsKey("email")
-                & register.containsKey("sex"))
-        {
-
-            UserRep userRep = new UserRep();
-            userRep.setEmail(register.get("email").toString());
-            userRep.setUsername(register.get("username").toString());
-            userRep.setPassword(register.get("password").toString());
-            userRep.setSex(register.get("sex").toString());
-            userService.create(userRep);
-            Map<String, Object> map = new HashMap<>();
-            map.put("name", userRep.getUsername());
-            return new ResponseEntity<>(HttpStatus.OK);
-
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            //return new HashMap<>();
-        }
+        return ResponseEntity.ok(new MessageResponse("User Registered"));
     }
 }
+

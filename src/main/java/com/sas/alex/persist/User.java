@@ -2,7 +2,10 @@ package com.sas.alex.persist;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
@@ -17,17 +20,17 @@ public class User {
     private String username;
 
 
-    @Column(nullable = false)
+    @JsonIgnore
     private String password;
-
-    @Transient
-    private String repeatPassword;
 
     @Column(unique = true, nullable = false)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @JoinTable(name = "user_role",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @Column(nullable = false)
     private String sex;
@@ -35,13 +38,10 @@ public class User {
     public User() {
     }
 
-    public User(Long id, @NotBlank String username, @NotBlank String password, String repeatPassword, @NotBlank String email, Set<Role> roles, @NotBlank String sex) {
-        this.id = id;
+    public User( String username,  String password,  String email, String sex) {
         this.username = username;
         this.password = password;
-        this.repeatPassword = repeatPassword;
         this.email = email;
-        this.roles = roles;
         this.sex = sex;
     }
 
@@ -77,14 +77,6 @@ public class User {
         this.password = password;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -99,5 +91,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString(){
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\''+
+                ", password='" + password + '\''+
+                '}';
     }
 }
