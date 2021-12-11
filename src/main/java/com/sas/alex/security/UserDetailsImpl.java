@@ -1,7 +1,7 @@
 package com.sas.alex.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sas.alex.persist.User;
+import com.sas.alex.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

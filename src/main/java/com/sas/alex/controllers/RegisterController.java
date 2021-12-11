@@ -5,11 +5,11 @@ import com.sas.alex.dto.auth.request.LoginRequest;
 import com.sas.alex.dto.auth.response.JwtResponse;
 import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.auth.request.SignupRequest;
-import com.sas.alex.persist.Role;
-import com.sas.alex.persist.RoleRepository;
-import com.sas.alex.persist.User;
+import com.sas.alex.model.Role;
+import com.sas.alex.repository.RoleRepository;
+import com.sas.alex.model.User;
 
-import com.sas.alex.persist.UserRepository;
+import com.sas.alex.repository.UserRepository;
 import com.sas.alex.security.UserDetailsImpl;
 import com.sas.alex.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;

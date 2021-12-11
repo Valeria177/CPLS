@@ -1,14 +1,12 @@
 package com.sas.alex.service;
 
-import com.sas.alex.persist.InfluenceRepository;
-import com.sas.alex.persist.Question;
-import com.sas.alex.persist.QuestionRepository;
-import com.sas.alex.persist.UserRepository;
+import com.sas.alex.repository.InfluenceRepository;
+import com.sas.alex.model.Question;
+import com.sas.alex.repository.QuestionRepository;
+import com.sas.alex.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.Id;
 
 @Service
 public class AdminService {

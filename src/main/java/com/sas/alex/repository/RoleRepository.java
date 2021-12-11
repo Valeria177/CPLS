@@ -1,5 +1,7 @@
-package com.sas.alex.persist;
+package com.sas.alex.repository;
 
+import com.sas.alex.model.ERole;
+import com.sas.alex.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

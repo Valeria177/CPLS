@@ -1,7 +1,7 @@
 package com.sas.alex.security;
 
-import com.sas.alex.persist.User;
-import com.sas.alex.persist.UserRepository;
+import com.sas.alex.model.User;
+import com.sas.alex.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

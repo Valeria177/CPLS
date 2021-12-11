@@ -1,6 +1,6 @@
 package com.sas.alex.dto.auth.someQuest;
 
-import com.sas.alex.persist.Question;
+import com.sas.alex.model.Question;
 
 import java.util.List;
 

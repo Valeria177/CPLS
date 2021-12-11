@@ -1,12 +1,11 @@
-package com.sas.alex.persist;
+package com.sas.alex.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import com.sas.alex.model.Role;
 
 @Entity
 @Table(name = "users")

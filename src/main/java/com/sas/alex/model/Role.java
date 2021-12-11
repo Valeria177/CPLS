@@ -1,4 +1,6 @@
-package com.sas.alex.persist;
+package com.sas.alex.model;
+
+import com.sas.alex.model.ERole;
 
 import javax.persistence.*;
 

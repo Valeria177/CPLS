@@ -1,16 +1,12 @@
 package com.sas.alex.controllers;
 
-import com.sas.alex.dto.admin.QuestionDeleteRequest;
-import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.auth.someQuest.QuestionResponse;
-import com.sas.alex.persist.UserRepository;
+import com.sas.alex.repository.UserRepository;
 import com.sas.alex.service.TestService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
