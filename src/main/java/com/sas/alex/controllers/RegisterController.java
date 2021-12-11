@@ -12,7 +12,6 @@ import com.sas.alex.persist.User;
 import com.sas.alex.persist.UserRepository;
 import com.sas.alex.security.UserDetailsImpl;
 import com.sas.alex.security.jwt.JwtUtils;
-import com.sas.alex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +36,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/reg")
 public class RegisterController {
 
-    private final UserService userService;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -53,11 +51,6 @@ public class RegisterController {
 
     @Autowired
     JwtUtils jwtUtils;
-
-    @Autowired
-    public RegisterController(UserService userService) {
-        this.userService = userService;
-    }
 
 
     @PostMapping("/signin")
