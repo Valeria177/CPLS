@@ -11,15 +11,40 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String questionTitle;
+    @Column(name = "number")
+    private Integer number;
 
     @NotBlank
     @Column(nullable = false)
     private String questionText;
 
+    @ManyToOne
+    private Influence inf;
+
     public Question() {
+    }
+
+    public Question(Long id, Integer number, @NotBlank String questionTitle, @NotBlank String questionText, Influence inf) {
+        this.id = id;
+        this.number = number;
+        this.questionText = questionText;
+        this.inf = inf;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Influence getInf() {
+        return inf;
+    }
+
+    public void setInf(Influence inf) {
+        this.inf = inf;
     }
 
     public Long getId() {
@@ -28,14 +53,6 @@ public class Question {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getQuestionTitle() {
-        return questionTitle;
-    }
-
-    public void setQuestionTitle(String questionTitle) {
-        this.questionTitle = questionTitle;
     }
 
     public String getQuestionText() {
