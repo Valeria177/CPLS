@@ -4,7 +4,7 @@ import com.sas.alex.dto.admin.ChangeTextRequest;
 import com.sas.alex.dto.admin.QuestionCreateRequest;
 import com.sas.alex.dto.admin.QuestionDeleteRequest;
 import com.sas.alex.dto.auth.response.MessageResponse;
-import com.sas.alex.dto.auth.someQuest.QuestionResponse;
+import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.service.AdminService;
 import com.sas.alex.service.QuestionService;
 import com.sas.alex.service.TestService;

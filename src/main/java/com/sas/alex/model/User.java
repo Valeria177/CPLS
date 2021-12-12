@@ -32,24 +32,24 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @Column(nullable = false)
-    private String sex;
+    private boolean sexF;
 
     public User() {
     }
 
-    public User( String username,  String password,  String email, String sex) {
+    public User( String username,  String password,  String email, boolean sexF) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.sex = sex;
+        this.sexF = sexF;
     }
 
-    public String getSex() {
-        return sex;
+    public boolean getSex() {
+        return sexF;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setSex(Boolean sex) {
+        this.sexF = sexF;
     }
 
     public Long getId() {

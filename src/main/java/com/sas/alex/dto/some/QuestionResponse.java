@@ -1,4 +1,4 @@
-package com.sas.alex.dto.auth.someQuest;
+package com.sas.alex.dto.some;
 
 import com.sas.alex.model.Question;
 

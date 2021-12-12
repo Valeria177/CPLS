@@ -1,4 +1,4 @@
-package com.sas.alex.dto.auth.someQuest;
+package com.sas.alex.dto.some;
 
 public class QuestionRequestById {
     private Long id;
