@@ -86,12 +86,12 @@ public class RegisterController {
         User user = new User(
                 signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getSex(),
-                signUpRequest.getEmail());
+                signUpRequest.getEmail(),
+                signUpRequest.getSexF());
 
         Set<Role> roles = new HashSet<>();
 
-        roles.add(roleRepository.getById((long) 1));
+        roles.add(roleRepository.getById((long) 3));
         user.setRoles(roles);
         userRepository.save(user);
 

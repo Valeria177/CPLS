@@ -14,7 +14,7 @@ public class SignupRequest {
     private String password;
 
     @NotBlank
-    private String sex;
+    private boolean sexF;
 
     public String getUsername() {
         return username;
@@ -40,11 +40,11 @@ public class SignupRequest {
         this.password = password;
     }
 
-    public String getSex() {
-        return sex;
+    public boolean getSexF() {
+        return sexF;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setSexF(boolean sexF) {
+        this.sexF = sexF;
     }
 }

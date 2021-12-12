@@ -44,11 +44,11 @@ public class User {
         this.sexF = sexF;
     }
 
-    public boolean getSex() {
+    public boolean getSexF() {
         return sexF;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSexF(Boolean sex) {
         this.sexF = sexF;
     }
 
