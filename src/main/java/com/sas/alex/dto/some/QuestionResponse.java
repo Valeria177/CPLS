@@ -5,17 +5,17 @@ import com.sas.alex.model.Question;
 import java.util.List;
 
 public class QuestionResponse {
-    private List<Question> question;
+    private List<Question> questions;
 
-    public QuestionResponse(List<Question> question){
-        this.question = question;
+    public QuestionResponse(List<Question> questions){
+        this.questions = questions;
     }
 
-    public List<Question> getQuestion(){
-        return question;
+    public List<Question> getQuestions(){
+        return questions;
     }
 
-    public void setQuestion(List<Question> question){
-        this.question = question;
+    public void setQuestions(List<Question> questions){
+        this.questions = questions;
     }
 }

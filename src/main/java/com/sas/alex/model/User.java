@@ -8,27 +8,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sas.alex.model.Role;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(unique = true,nullable = false)
+    @Column(name = "username", unique = true)
     private String username;
 
-
+    @Column(name = "password", nullable = false)
     @JsonIgnore
     private String password;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "email", unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @Column(nullable = false)
@@ -37,7 +38,7 @@ public class User {
     public User() {
     }
 
-    public User( String username,  String password,  String email, boolean sexF) {
+    public User(String username, String password, String email, boolean sexF) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -93,11 +94,11 @@ public class User {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\''+
-                ", password='" + password + '\''+
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

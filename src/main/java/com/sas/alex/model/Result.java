@@ -14,13 +14,20 @@ public class Result {
     @Column(name = "description")
     private String description;
 
-    @Column
+    @Column(name = "scores")
     private Integer scores;
 
     @ManyToOne
     Influence influence;
 
     public Result() {
+    }
+
+    public Result(Long id, String description, Integer scores, Influence influence) {
+        this.id = id;
+        this.description = description;
+        this.scores = scores;
+        this.influence = influence;
     }
 
     public Long getId() {

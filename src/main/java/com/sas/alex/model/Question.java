@@ -3,7 +3,6 @@ package com.sas.alex.model;
 import com.sas.alex.model.Influence;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "questions")
@@ -16,8 +15,7 @@ public class Question {
     @Column(name = "number")
     private Integer number;
 
-    @NotBlank
-    @Column(nullable = false)
+    @Column(name = "question_text")
     private String questionText;
 
     @ManyToOne
@@ -26,7 +24,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(Long id, Integer number, @NotBlank String questionTitle, @NotBlank String questionText, Influence inf) {
+    public Question(Long id, Integer number, String questionTitle, String questionText, Influence inf) {
         this.id = id;
         this.number = number;
         this.questionText = questionText;

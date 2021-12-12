@@ -1,5 +1,6 @@
 package com.sas.alex.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,21 +21,26 @@ public class Attempt {
     @JsonManagedReference
     private User user;
 
-
-
+    @OneToMany (fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "attempt_id")
     private List<Result> results;
 
-    private List<AnswerQuestion> answerQuests;
-
-    public List<AnswerQuestion> getAnswerQuests() {
-        return answerQuests;
-    }
-
-    public void setAnswerQuests(List<AnswerQuestion> answerQuests) {
-        this.answerQuests = answerQuests;
-    }
+    @OneToMany (fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "attempt_id")
+    @JsonBackReference
+    private List<AnswerQuestion> answerQuestions;
 
     public Attempt() {
+    }
+
+    public List<AnswerQuestion> getAnswerQuestions() {
+        return answerQuestions;
+    }
+
+    public void setAnswerQuestions(List<AnswerQuestion> answerQuestions) {
+        this.answerQuestions = answerQuestions;
     }
 
     public List<Result> getResults() {

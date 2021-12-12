@@ -2,7 +2,6 @@ package com.sas.alex.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "answers")
@@ -12,11 +11,40 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false)
+    @Column(name = "number")
+    private Integer number;
+
+    @Column(name = "answer_text",nullable = false)
     private String answerText;
 
+    @Column(name = "scores")
+    private Integer scores;
+
+
     public Answer() {
+    }
+
+    public Answer(Long id, Integer number, String answerText, Integer scores) {
+        this.id = id;
+        this.number = number;
+        this.answerText = answerText;
+        this.scores = scores;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Integer getScores() {
+        return scores;
+    }
+
+    public void setScores(Integer scores) {
+        this.scores = scores;
     }
 
     public Long getId() {

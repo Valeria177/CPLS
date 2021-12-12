@@ -32,7 +32,7 @@ public class TestService {
     //Начать
     @Transactional
     public boolean startTest(User user) {
-        Attempt attempt = attemptRepository.getCurAttempt(user.getId());
+        Attempt attempt = attemptRepository.getCurrentAttempt(user.getId());
         if (attempt != null) {
             attemptRepository.delete(attempt);
         }
@@ -51,8 +51,8 @@ public class TestService {
     //Закончить тест
     @Transactional
     public boolean finishTest(User user) {
-        Attempt attempt = attemptRepository.getCurAttempt(user.getId());
-        if (attempt != null && attempt.getAnswerQuests().size() == questionRepository.count()) {
+        Attempt attempt = attemptRepository.getCurrentAttempt(user.getId());
+        if (attempt != null && attempt.getAnswerQuestions().size() == questionRepository.count()) {
             attempt.setFinished(true);
             attemptRepository.save(attempt);
             return true;
@@ -86,7 +86,7 @@ public class TestService {
     public boolean giveAnswer(User user, Long idQuest, Long idAnswer){
         Question question = questionRepository.getById(idQuest);
         Answer answer = answerRepository.getById(idAnswer);
-        Attempt attempt = attemptRepository.getCurAttempt(user.getId());
+        Attempt attempt = attemptRepository.getCurrentAttempt(user.getId());
 
         AnswerQuestion answerQuestion = new AnswerQuestion();
         answerQuestion.setAnswer(answer);

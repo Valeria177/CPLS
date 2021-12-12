@@ -5,10 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface AttemptRepository extends JpaRepository<Attempt,Long > {
-
+public interface AttemptRepository extends JpaRepository<Attempt, Long> {
     //Хз работает ли, взято с оверФЛОУ
-    @Query(value = "select a from Attempt a where a.finished=false and a.user.id:id")
-    Attempt getCurAttempt(@Param("id") Long id);
+    @Query("select a from Attempt a where a.finished=false and  a.user.id=:id")
+    Attempt getCurrentAttempt(@Param("id") long id);
 
 }

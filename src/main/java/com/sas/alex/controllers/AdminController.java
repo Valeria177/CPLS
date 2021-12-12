@@ -6,7 +6,6 @@ import com.sas.alex.dto.admin.QuestionDeleteRequest;
 import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.service.AdminService;
-import com.sas.alex.service.QuestionService;
 import com.sas.alex.service.TestService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
-
-    @Autowired
-    private QuestionService questionService;
 
     @Autowired
     private TestService testService;
