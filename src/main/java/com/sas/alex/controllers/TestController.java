@@ -4,7 +4,6 @@ import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.for_answer.InputRequest;
 import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.model.User;
-import com.sas.alex.repository.ResultRepository;
 import com.sas.alex.repository.UserRepository;
 import com.sas.alex.service.TestService;
 import io.swagger.annotations.ApiOperation;

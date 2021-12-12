@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 
@@ -52,7 +53,7 @@ public class AdminController {
 
     }
 
-    @PostMapping("/question")
+    @PostMapping("/delQuestion")
     @ApiOperation("Удаляем вопрос")
     public ResponseEntity<MessageResponse> delQuest(@Valid @RequestBody QuestionDeleteRequest questionDeleteRequest ) {
         if(adminService.deleteQuestion(questionDeleteRequest.getId()))
