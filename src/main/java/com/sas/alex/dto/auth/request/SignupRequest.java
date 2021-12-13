@@ -13,7 +13,6 @@ public class SignupRequest {
     @NotBlank
     private String password;
 
-    @NotBlank
     private boolean sexF;
 
     public String getUsername() {

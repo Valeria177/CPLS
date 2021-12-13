@@ -91,7 +91,7 @@ public class RegisterController {
 
         Set<Role> roles = new HashSet<>();
 
-        roles.add(roleRepository.getById((long) 3));
+        roles.add(roleRepository.getById(2));
         user.setRoles(roles);
         userRepository.save(user);
 
