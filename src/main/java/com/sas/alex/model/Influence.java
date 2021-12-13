@@ -14,15 +14,15 @@ public class Influence {
     private String name;
 
     @Column(name = "m_critic_male")
-    private boolean isWomen;
+    private Integer isWomen;
 
     @Column(name = "q_critic_male")
-    private boolean isMan;
+    private Integer isMan;
 
     public Influence() {
     }
 
-    public Influence(long id, String name, boolean isWomen, boolean isMan) {
+    public Influence(long id, String name, Integer isWomen, Integer isMan) {
         this.id = id;
         this.name = name;
         this.isWomen = isWomen;
@@ -45,19 +45,19 @@ public class Influence {
         this.name = name;
     }
 
-    public boolean isWomen() {
+    public Integer isWomen() {
         return isWomen;
     }
 
-    public void setWomen(boolean women) {
+    public void setWomen(Integer women) {
         isWomen = women;
     }
 
-    public boolean isMan() {
+    public Integer isMan() {
         return isMan;
     }
 
-    public void setMan(boolean man) {
+    public void setMan(Integer man) {
         isMan = man;
     }
 }
