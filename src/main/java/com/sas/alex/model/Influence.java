@@ -14,27 +14,19 @@ public class Influence {
     private String name;
 
     @Column(name = "m_critic_male")
-    private Double McriticMale;
+    private boolean isWomen;
 
     @Column(name = "q_critic_male")
-    private Double QcriticMale;
-
-    @Column(name = "m_critic_female")
-    private Double McriticFemale;
-
-    @Column(name = "q_critic_female")
-    private Double QcriticFemale;
+    private boolean isMan;
 
     public Influence() {
     }
 
-    public Influence(long id, String name, Double mcriticMale, Double qcriticMale, Double mcriticFemale, Double qcriticFemale) {
+    public Influence(long id, String name, boolean isWomen, boolean isMan) {
         this.id = id;
         this.name = name;
-        McriticMale = mcriticMale;
-        QcriticMale = qcriticMale;
-        McriticFemale = mcriticFemale;
-        QcriticFemale = qcriticFemale;
+        this.isWomen = isWomen;
+        this.isMan = isMan;
     }
 
     public long getId() {
@@ -53,35 +45,19 @@ public class Influence {
         this.name = name;
     }
 
-    public Double getMcriticMale() {
-        return McriticMale;
+    public boolean isWomen() {
+        return isWomen;
     }
 
-    public void setMcriticMale(Double mcriticMale) {
-        McriticMale = mcriticMale;
+    public void setWomen(boolean women) {
+        isWomen = women;
     }
 
-    public Double getQcriticMale() {
-        return QcriticMale;
+    public boolean isMan() {
+        return isMan;
     }
 
-    public void setQcriticMale(Double qcriticMale) {
-        QcriticMale = qcriticMale;
-    }
-
-    public Double getMcriticFemale() {
-        return McriticFemale;
-    }
-
-    public void setMcriticFemale(Double mcriticFemale) {
-        McriticFemale = mcriticFemale;
-    }
-
-    public Double getQcriticFemale() {
-        return QcriticFemale;
-    }
-
-    public void setQcriticFemale(Double qcriticFemale) {
-        QcriticFemale = qcriticFemale;
+    public void setMan(boolean man) {
+        isMan = man;
     }
 }
