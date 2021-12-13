@@ -77,10 +77,10 @@ public class RegisterController {
 
     @PostMapping("/register")
     public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getEmail())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: email is already taken!"));
+                    .body(new MessageResponse("Error: username is already taken!"));
         }
         //Create new user
         User user = new User(
