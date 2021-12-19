@@ -2,10 +2,12 @@ package com.sas.alex.controllers;
 
 import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.for_answer.InputRequest;
+import com.sas.alex.dto.some.AnswerResponse;
 import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.model.User;
 import com.sas.alex.repository.UserRepository;
 import com.sas.alex.service.TestService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,12 @@ public class TestController {
     @ApiOperation("Список вопросов")
     public ResponseEntity<QuestionResponse> questions() {
         return ResponseEntity.ok(new QuestionResponse(testService.getAllQuestions()));
+    }
+
+    @GetMapping("/answer")
+    @ApiOperation("Вернёт список ответов")
+    public  ResponseEntity<AnswerResponse> answers(){
+        return ResponseEntity.ok(new AnswerResponse(testService.getAnswers()));
     }
 
     @PostMapping("/startTest")

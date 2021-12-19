@@ -28,7 +28,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/details")
-    @ApiOperation("Инфа о аккаунте")
+    @ApiOperation("Инфа о аккаунте!")
     public ResponseEntity<UserResponse> userDetails(Principal principal){
         User user = userRepository.findByUsername(principal.getName()).get();
         return ResponseEntity.ok(userService.getDetails(user));
