@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cptestls">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -9,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CPTestLS">
+        <activity
+            android:name=".Statistics"
+            android:exported="true" />
         <activity
             android:name=".SuccessRegister"
             android:exported="true" />
@@ -24,10 +30,7 @@
         <activity
             android:name=".Login"
             android:exported="true" />
-        <activity
-            android:name=".ui.login.Login"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
+
         <activity
             android:name=".StartTheTestOrLogin"
             android:exported="false" />
