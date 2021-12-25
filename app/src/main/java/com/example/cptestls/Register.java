@@ -117,5 +117,6 @@ public class Register extends AppCompatActivity {
     private void goToAuth() {
         Intent i = new Intent(this, Login.class);
         startActivity(i);
+        finish();
     }
 }
