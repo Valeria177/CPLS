@@ -55,9 +55,9 @@ public class TestService {
         if (attempt != null && attempt.getAnswerQuestions().size() == questionRepository.count()) {
             attempt.setFinished(true);
             attemptRepository.save(attempt);
-            return true;
+            return attempt.getId();
         } else
-            return false;
+            return null;
     }
 
 
