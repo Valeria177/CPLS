@@ -1,5 +1,7 @@
 package com.sas.alex.service;
 
+import com.sas.alex.model.Answer;
+import com.sas.alex.repository.AnswerRepository;
 import com.sas.alex.repository.InfluenceRepository;
 import com.sas.alex.model.Question;
 import com.sas.alex.repository.QuestionRepository;
@@ -18,6 +20,9 @@ public class AdminService {
 
     @Autowired
     QuestionRepository questionRepository;
+
+    @Autowired
+    AnswerRepository answerRepository;
 
     @Transactional
     public boolean addQuest(String text, Integer number, Long inf_id){
@@ -51,6 +56,33 @@ public class AdminService {
         question.setQuestionText(text);
         try {
             questionRepository.save(question);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional
+    public  boolean addAnswer(String text, Integer number, Integer scores){
+        Answer answer = new Answer();
+        answer.setAnswerText(text);
+        answer.setNumber(number);
+        answer.setScores(scores);
+
+        try {
+            answerRepository.save(answer);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional
+    public boolean changeTextAnswerRequest(String text, Long id){
+        Answer answer = answerRepository.getById(id);
+        answer.setAnswerText(text);
+        try {
+            answerRepository.save(answer);
         }catch (Exception e){
             return false;
         }

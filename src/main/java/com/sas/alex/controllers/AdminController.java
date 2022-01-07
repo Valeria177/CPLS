@@ -1,9 +1,11 @@
 package com.sas.alex.controllers;
 
+import com.sas.alex.dto.admin.AnswerCreateRequest;
 import com.sas.alex.dto.admin.ChangeTextRequest;
 import com.sas.alex.dto.admin.QuestionCreateRequest;
 import com.sas.alex.dto.admin.QuestionDeleteRequest;
 import com.sas.alex.dto.auth.response.MessageResponse;
+import com.sas.alex.dto.some.AnswerResponse;
 import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.service.AdminService;
 import com.sas.alex.service.TestService;
@@ -32,6 +34,11 @@ public class AdminController {
         return ResponseEntity.ok(new QuestionResponse(testService.getAllQuestions()));
     }
 
+    @GetMapping("/answer")
+    @ApiOperation("Вернёт список ответов")
+    public  ResponseEntity<AnswerResponse> answers(){
+        return ResponseEntity.ok(new AnswerResponse(testService.getAnswers()));
+    }
 
     /*@GetMapping("/questionById")
     @ApiOperation("Вернёт вопрос по айдишнику")
@@ -40,8 +47,8 @@ public class AdminController {
     }*/
 
     @PostMapping("/newQuestion")
-    @ApiOperation("Создаёт вопрос.")
-    public ResponseEntity<MessageResponse> accoun(@Valid @RequestBody QuestionCreateRequest questionCreateRequest) {
+    @ApiOperation("Создаёт вопрос")
+    public ResponseEntity<MessageResponse> account(@Valid @RequestBody QuestionCreateRequest questionCreateRequest) {
         if(adminService.addQuest(questionCreateRequest.getText(), questionCreateRequest.getNumber(), questionCreateRequest.getInf_id()))
             return ResponseEntity.ok(new MessageResponse("Question add successfully!"));
         else
@@ -61,12 +68,30 @@ public class AdminController {
 
     @PostMapping("/editQuestion")
     @ApiOperation("Редактирование вопроса")
-    public ResponseEntity<?> editQuestion(@Valid @RequestBody ChangeTextRequest changeTextRequest) {
+    public ResponseEntity<MessageResponse> editQuestion(@Valid @RequestBody ChangeTextRequest changeTextRequest) {
         if(adminService.changeTextRequest(changeTextRequest.getText(), changeTextRequest.getId()))
             return ResponseEntity.ok(new MessageResponse("Text has been changed!"));
         else
             return ResponseEntity.badRequest().body(new MessageResponse("Error!"));
 
+    }
+
+    @PostMapping("/newAnswer")
+    @ApiOperation("Создаёт ответ")
+    public ResponseEntity<MessageResponse> newAnswer(@Valid @RequestBody AnswerCreateRequest answerCreateRequest){
+        if(adminService.addAnswer(answerCreateRequest.getText(), answerCreateRequest.getNumber(), answerCreateRequest.getScores()))
+            return ResponseEntity.ok(new MessageResponse("Answer add successfully!"));
+        else
+            return ResponseEntity.badRequest().body(new MessageResponse("Error"));
+    }
+
+    @PostMapping("/editAnswer")
+    @ApiOperation("Редактирование текста ответа. ТОЛЬКО ТЕКСТ, БАЛЛЫ И НОМЕР НЕ ДЕЛАЛ.")
+    public ResponseEntity<MessageResponse> editAnswer(@Valid @RequestBody ChangeTextRequest changeTextRequest){
+        if(adminService.changeTextAnswerRequest(changeTextRequest.getText(), changeTextRequest.getId()))
+            return ResponseEntity.ok(new MessageResponse("Text has been changed!"));
+        else
+            return ResponseEntity.badRequest().body(new MessageResponse("Error!"));
     }
 
 }
