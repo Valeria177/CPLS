@@ -34,12 +34,6 @@ public class AdminController {
         return ResponseEntity.ok(new QuestionResponse(testService.getAllQuestions()));
     }
 
-    @GetMapping("/answer")
-    @ApiOperation("Вернёт список ответов")
-    public  ResponseEntity<AnswerResponse> answers(){
-        return ResponseEntity.ok(new AnswerResponse(testService.getAnswers()));
-    }
-
     /*@GetMapping("/questionById")
     @ApiOperation("Вернёт вопрос по айдишнику")
     public ResponseEntity<QuestionResponse> getQuestionById(@Valid @RequestBody QuestionRequestById questionRequestById) {
