@@ -4,6 +4,7 @@ import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.for_answer.InputRequest;
 import com.sas.alex.dto.some.AnswerResponse;
 import com.sas.alex.dto.some.QuestionResponse;
+import com.sas.alex.dto.some.TestResult;
 import com.sas.alex.model.User;
 import com.sas.alex.repository.UserRepository;
 import com.sas.alex.service.TestService;
@@ -54,13 +55,13 @@ public class TestController {
 
     @PostMapping("/finishedTest")
     @ApiOperation("Завершить прохождение")
-    public ResponseEntity<MessageResponse> endTest(Principal principal) {
+    public ResponseEntity<?> endTest(Principal principal) {
         User user = userRepository.findByUsername(principal.getName()).get();
-
-        if (testService.finishTest(user))
-            return ResponseEntity.ok(new MessageResponse("Test is finished."));
+        Long result = testService.finishTest(user);
+        if (result!=null)
+            return ResponseEntity.ok(new TestResult(result));
         else
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: not all answer."));
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: not all question have answer."));
     }
 
     @PostMapping("/sendAnswer")
