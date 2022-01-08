@@ -3,6 +3,7 @@ package com.sas.alex.dto.for_answer;
 import javax.validation.constraints.NotBlank;
 
 public class InputRequest {
+
     @NotBlank
     private Long idQ;
 
