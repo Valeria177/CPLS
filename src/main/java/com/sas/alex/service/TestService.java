@@ -83,14 +83,14 @@ public class TestService {
 
 
     @Transactional
-    public boolean giveAnswer(User user, Long idQuest, Long idAnswer){
-        Question question = questionRepository.getById(idQuest);
-        Answer answer = answerRepository.getById(idAnswer);
+    public boolean sendAnswer(User user, Long idQ, Long idA){
+        Question question = questionRepository.getById(idQ);
+        Answer answer = answerRepository.getById(idA);
         Attempt attempt = attemptRepository.getCurrentAttempt(user.getId());
 
         AnswerQuestion answerQuestion = new AnswerQuestion();
-        answerQuestion.setAnswer(answer);
         answerQuestion.setQuestion(question);
+        answerQuestion.setAnswer(answer);
         answerQuestion.setAttempt(attempt);
 
         try {
