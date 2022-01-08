@@ -68,7 +68,7 @@ public class TestController {
     @ApiOperation("Отправить ответ на вопрос")
     public ResponseEntity<MessageResponse> sendAnswer(@Valid @RequestBody InputRequest inputRequest, Principal principal){
         User user = userRepository.findByUsername(principal.getName()).get();
-        if(testService.giveAnswer(user, inputRequest.getIdQuest(), inputRequest.getIdAnswer()))
+        if(testService.giveAnswer(user, inputRequest.getIdQ(), inputRequest.getIdA()))
             return ResponseEntity.ok(new MessageResponse("Ok"));
         else
             return ResponseEntity.badRequest().body(new MessageResponse("Error!"));

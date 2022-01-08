@@ -4,24 +4,24 @@ import javax.validation.constraints.NotBlank;
 
 public class InputRequest {
     @NotBlank
-    private Long idQuest;
+    private Long idQ;
 
     @NotBlank
-    private Long idAnswer;
+    private Long idA;
 
-    public Long getIdQuest() {
-        return idQuest;
+    public Long getIdQ() {
+        return idQ;
     }
 
-    public void setIdQuest(Long idQuest) {
-        this.idQuest = idQuest;
+    public void setIdQ(Long idQ) {
+        this.idQ = idQ;
     }
 
-    public Long getIdAnswer() {
-        return idAnswer;
+    public Long getIdA() {
+        return idA;
     }
 
-    public void setIdAnswer(Long idAnswer) {
-        this.idAnswer = idAnswer;
+    public void setIdA(Long idA) {
+        this.idA = idA;
     }
 }
