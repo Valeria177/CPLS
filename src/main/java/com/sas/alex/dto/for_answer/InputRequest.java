@@ -1,13 +1,13 @@
 package com.sas.alex.dto.for_answer;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class InputRequest {
 
-    @NotBlank
     private Long idQ;
 
-    @NotBlank
     private Long idA;
 
     public Long getIdQ() {

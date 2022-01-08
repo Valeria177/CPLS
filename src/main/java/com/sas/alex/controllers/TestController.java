@@ -66,6 +66,8 @@ public class TestController {
 
     @PostMapping("/sendAnswer")
     public ResponseEntity<MessageResponse> sendAnswer(@Valid @RequestBody InputRequest inputRequest, Principal principal){
+
+
         User user = userRepository.findByUsername(principal.getName()).get();
 
         if(testService.sendAnswer(user, inputRequest.getIdQ(), inputRequest.getIdA()))
