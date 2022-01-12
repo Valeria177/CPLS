@@ -26,7 +26,7 @@ public class Attempt {
     @JoinColumn(name = "attempt_id")
     private Result results;
 
-    @OneToMany (fetch = FetchType.LAZY,
+    @OneToMany (fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "attempt_id")
     @JsonBackReference
