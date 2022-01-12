@@ -78,6 +78,7 @@ public class TestController {
     @GetMapping("/results")
     @ApiOperation("Получает данные о пройденном тесте и возвращает результат прохождения теста")
     public ResponseEntity<ResultResponse> results(@RequestParam Integer scores, @RequestParam Long id){
+        //return ResponseEntity.ok(new ResultResponse(testService.results(attemptRequestID.getId())));
         return ResponseEntity.ok(new ResultResponse(testService.getResults(scores, id)));
     }
 

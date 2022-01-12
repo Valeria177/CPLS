@@ -16,6 +16,7 @@ public class UserService {
         UserResponse userResponse = new UserResponse();
         userResponse.setUsername(user.getUsername());
         userResponse.setSexF(user.getSexF());
+        userResponse.setEmail(user.getEmail());
         return userResponse;
     }
 
