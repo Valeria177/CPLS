@@ -8,7 +8,7 @@ public class ResultResponse {
 
     private Integer scores;
 
-    private Result results;
+    private List<Result> results;
 
     public Integer getScores() {
         return scores;
@@ -18,15 +18,15 @@ public class ResultResponse {
         this.scores = scores;
     }
 
-    public ResultResponse(Result results) {
+    public ResultResponse(List<Result> results) {
         this.results = results;
     }
 
-    public Result getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setResults(Result results) {
+    public void setResults(List<Result> results) {
         this.results = results;
     }
 }

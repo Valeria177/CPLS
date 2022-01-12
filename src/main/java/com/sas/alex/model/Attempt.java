@@ -24,7 +24,7 @@ public class Attempt {
     @OneToMany (fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "attempt_id")
-    private Result results;
+    private List<Result> results;
 
     @OneToMany (fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -43,11 +43,11 @@ public class Attempt {
         this.answerQuestions = answerQuestions;
     }
 
-    public Result getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setResults(Result results) {
+    public void setResults(List<Result> results) {
         this.results = results;
     }
 

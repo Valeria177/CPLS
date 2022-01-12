@@ -78,11 +78,11 @@ public class TestController {
     }
 
     //Подтяну штанишки, прочту книгу по этому тесту и посчитаю баллы за вопросы. А там и работать всё будет
-    @PostMapping("/result")
+    /*@PostMapping("/result")
     @ApiOperation("Результат прохождения")
     public ResponseEntity<ResultResponse> getResult(@Valid @RequestBody Long id, @RequestBody Integer scores){
         return ResponseEntity.ok(new ResultResponse(testService.results(id,scores)));
-    }
+    }*/
 
 }
 
