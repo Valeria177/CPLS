@@ -62,24 +62,28 @@ public class TestService {
 
 
     //Главная логика, баллы и прочее, я ничего не делал. Только итоговый вывод. Но он, скорее всего, крашнется
-    /*@Transactional
+    @Transactional
     public List<Result> results(Long id){
         Attempt attempt = attemptRepository.getById(id);
+        Result result = new Result();
         List<Result> results = new ArrayList<>();
+        int scores = 0;
 
         if(attempt.isFinished()){
+
+            if(scores>=23){
+                result.setDescription("Ну вы того этого, пассивный врушка!");
+            }
+
 
             attempt.setResults(results);
             attemptRepository.save(attempt);
             return results;
+
         }
         return null;
     }
 
-    public List<Question> getQuestionById (Long id){
-        Long count = questionRepository.count();
-        return questionRepository.findById(id);
-    }*/
 
 
     @Transactional
