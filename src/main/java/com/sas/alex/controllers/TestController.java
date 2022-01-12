@@ -81,6 +81,13 @@ public class TestController {
         return ResponseEntity.ok(new ResultResponse(testService.getResults(scores, id)));
     }
 
+    @GetMapping("/attempts")
+    @ApiOperation("Вернёт все попытки пользователя")
+    public ResponseEntity<?> attempts(Principal principal){
+        User user = userRepository.findByUsername(principal.getName()).get();
+        return ResponseEntity.ok(new AttemptResponse(testService.getUserAttempts(user)));
+    }
+
 }
 
 

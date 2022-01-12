@@ -60,6 +60,12 @@ public class TestService {
             return null;
     }
 
+    @Transactional
+    public List<Attempt> getUserAttempts(User user){
+        return attemptRepository.getAllUserAttempt(user.getId());
+    }
+
+
 
     //Главная логика, баллы и прочее, я ничего не делал. Только итоговый вывод. Но он, скорее всего, крашнется
     @Transactional
