@@ -63,10 +63,9 @@ public class TestService {
 
     //Главная логика, баллы и прочее, я ничего не делал. Только итоговый вывод. Но он, скорее всего, крашнется
     @Transactional
-    public List<Result> results(Long id, int scores){
+    public Result results(Long id, int scores){
         Attempt attempt = attemptRepository.getById(id);
         Result result = new Result();
-        List<Result> results = new ArrayList<>();
 
         if(attempt.isFinished()){
 
@@ -75,9 +74,9 @@ public class TestService {
             }
 
 
-            attempt.setResults(results);
+            attempt.setResults(result);
             attemptRepository.save(attempt);
-            return results;
+            return result;
 
         }
         return null;

@@ -5,17 +5,28 @@ import com.sas.alex.model.Result;
 import java.util.List;
 
 public class ResultResponse {
-    private List<Result> results;
 
-    public ResultResponse(List<Result> results) {
+    private Integer scores;
+
+    private Result results;
+
+    public Integer getScores() {
+        return scores;
+    }
+
+    public void setScores(Integer scores) {
+        this.scores = scores;
+    }
+
+    public ResultResponse(Result results) {
         this.results = results;
     }
 
-    public List<Result> getResults() {
+    public Result getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(Result results) {
         this.results = results;
     }
 }
