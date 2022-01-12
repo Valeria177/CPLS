@@ -21,10 +21,10 @@ public class Attempt {
     @JsonManagedReference
     private User user;
 
-    @OneToMany (fetch = FetchType.LAZY,
+    @ManyToOne  (fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "attempt_id")
-    private List<Result> results;
+    private Result results;
 
     @OneToMany (fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -43,11 +43,11 @@ public class Attempt {
         this.answerQuestions = answerQuestions;
     }
 
-    public List<Result> getResults() {
+    public Result getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(Result results) {
         this.results = results;
     }
 

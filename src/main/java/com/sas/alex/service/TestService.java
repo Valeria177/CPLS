@@ -63,33 +63,36 @@ public class TestService {
 
     //Главная логика, баллы и прочее, я ничего не делал. Только итоговый вывод. Но он, скорее всего, крашнется
     @Transactional
-    public List<Result> results(Long id, Integer scores){
+    public Result getResults(Integer scores, Long id) {
+
         Attempt attempt = attemptRepository.getById(id);
-        List<Result> results = new ArrayList<>();
-        scores = 0;
+        Result result;
+        String description;
 
-        if(attempt.isFinished()){
+        if (attempt.isFinished()) {
 
-            if(scores>=23){
-                Result result = new Result();
-                result.setDescription("Ну вы того этого, пассивный врушка!");
-                results.add(result);
-                resultRepository.save(result);
+            if (scores <= 23) {
+                description = "Ну вы того этого, пассивный врушка!";
+            } else {
+                description = "СОСИ";
             }
 
+            String des = description;
 
-            attempt.setResults(results);
+            result = resultRepository.findByDescription(des);
+            attempt.setResults(result);
             attemptRepository.save(attempt);
-            return results;
-
+            return result;
+        } else {
+            return null;
         }
-        return null;
+
+
     }
 
 
-
     @Transactional
-    public boolean sendAnswer(User user, Long idQ, Long idA){
+    public boolean sendAnswer(User user, Long idQ, Long idA) {
         Question question = questionRepository.getById(idQ);
 
         Answer answer = answerRepository.getById(idA);
@@ -101,7 +104,7 @@ public class TestService {
 
         try {
             answerQuestionRepository.save(answerQuestion);
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;

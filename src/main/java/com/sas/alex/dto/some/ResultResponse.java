@@ -6,27 +6,20 @@ import java.util.List;
 
 public class ResultResponse {
 
-    private Integer scores;
+    Result result;
 
-    private List<Result> results;
-
-    public Integer getScores() {
-        return scores;
+    public ResultResponse() {
     }
 
-    public void setScores(Integer scores) {
-        this.scores = scores;
+    public ResultResponse(Result result) {
+        this.result = result;
     }
 
-    public ResultResponse(List<Result> results) {
-        this.results = results;
+    public Result getResult() {
+        return result;
     }
 
-    public List<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setResult(Result result) {
+        this.result = result;
     }
 }

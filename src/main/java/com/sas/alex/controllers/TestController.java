@@ -2,10 +2,7 @@ package com.sas.alex.controllers;
 
 import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.for_answer.InputRequest;
-import com.sas.alex.dto.some.AnswerResponse;
-import com.sas.alex.dto.some.QuestionResponse;
-import com.sas.alex.dto.some.ResultResponse;
-import com.sas.alex.dto.some.TestResult;
+import com.sas.alex.dto.some.*;
 import com.sas.alex.model.User;
 import com.sas.alex.repository.UserRepository;
 import com.sas.alex.service.TestService;
@@ -78,10 +75,10 @@ public class TestController {
     }
 
     //Подтяну штанишки, прочту книгу по этому тесту и посчитаю баллы за вопросы. А там и работать всё будет
-    @PostMapping("/result")
-    @ApiOperation("Результат прохождения")
-    public ResponseEntity<ResultResponse> getResult(@Valid @RequestBody Long id, @RequestBody Integer scores){
-        return ResponseEntity.ok(new ResultResponse(testService.results(id,scores)));
+    @GetMapping("/results")
+    @ApiOperation("Получает данные о пройденном тесте и возвращает результат прохождения теста")
+    public ResponseEntity<ResultResponse> results(@RequestParam Integer scores, @RequestParam Long id){
+        return ResponseEntity.ok(new ResultResponse(testService.getResults(scores, id)));
     }
 
 }
