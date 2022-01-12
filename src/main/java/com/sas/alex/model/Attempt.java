@@ -21,12 +21,12 @@ public class Attempt {
     @JsonManagedReference
     private User user;
 
-    @ManyToOne  (fetch = FetchType.LAZY,
+    @ManyToOne  (fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "attempt_id")
     private Result results;
 
-    @OneToMany (fetch = FetchType.EAGER,
+    @OneToMany (fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "attempt_id")
     @JsonBackReference
