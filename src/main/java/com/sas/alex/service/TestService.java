@@ -1,10 +1,7 @@
 package com.sas.alex.service;
 
 import com.sas.alex.model.*;
-import com.sas.alex.repository.AnswerQuestionRepository;
-import com.sas.alex.repository.AnswerRepository;
-import com.sas.alex.repository.AttemptRepository;
-import com.sas.alex.repository.QuestionRepository;
+import com.sas.alex.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +24,9 @@ public class TestService {
 
     @Autowired
     AnswerQuestionRepository answerQuestionRepository;
+
+    @Autowired
+    ResultRepository resultRepository;
 
 
     //Начать
@@ -62,17 +62,19 @@ public class TestService {
 
 
     //Главная логика, баллы и прочее, я ничего не делал. Только итоговый вывод. Но он, скорее всего, крашнется
-    /*@Transactional
-    public List<Result> results(Long id){
+    @Transactional
+    public List<Result> results(Long id, Integer scores){
         Attempt attempt = attemptRepository.getById(id);
-        Result result = new Result();
-        //List<Result> results = new ArrayList<>();
-        int scores = 0;
+        List<Result> results = new ArrayList<>();
+        scores = 0;
 
         if(attempt.isFinished()){
 
             if(scores>=23){
+                Result result = new Result();
                 result.setDescription("Ну вы того этого, пассивный врушка!");
+                results.add(result);
+                resultRepository.save(result);
             }
 
 
@@ -82,7 +84,7 @@ public class TestService {
 
         }
         return null;
-    }*/
+    }
 
 
 
