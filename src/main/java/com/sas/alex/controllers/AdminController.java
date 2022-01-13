@@ -32,7 +32,7 @@ public class AdminController {
 
     @GetMapping("/allAttempt")
     @ApiOperation("Вернёт все вопросы")
-    public ResponseEntity<AttemptResponse> attempts(){
+    public ResponseEntity<AttemptResponse> attempts1(){
         return ResponseEntity.ok(new AttemptResponse(testService.getAllAttempt()));
     }
 
