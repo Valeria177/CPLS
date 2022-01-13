@@ -56,10 +56,10 @@ public class TestController {
     public ResponseEntity<?> endTest(Principal principal) {
         User user = userRepository.findByUsername(principal.getName()).get();
         Long result = testService.finishTest(user);
-        //if (result!=null)
+        if (result!=null)
             return ResponseEntity.ok(new TestResult(result));
-        //else
-            //return ResponseEntity.badRequest().body(new MessageResponse("Error: not all question have answer."));
+        else
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: not all question have answer."));
     }
 
     @PostMapping("/sendAnswer")
