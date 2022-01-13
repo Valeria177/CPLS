@@ -15,4 +15,6 @@ public interface AttemptRepository extends JpaRepository<Attempt, Long> {
     @Query("select a from Attempt a where a.user.id=:id")
     List<Attempt> getAllUserAttempt(@Param("id") long id);
 
+
+
 }

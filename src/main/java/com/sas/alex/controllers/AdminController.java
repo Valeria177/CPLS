@@ -6,6 +6,7 @@ import com.sas.alex.dto.admin.QuestionCreateRequest;
 import com.sas.alex.dto.admin.QuestionDeleteRequest;
 import com.sas.alex.dto.auth.response.MessageResponse;
 import com.sas.alex.dto.some.AnswerResponse;
+import com.sas.alex.dto.some.AttemptResponse;
 import com.sas.alex.dto.some.QuestionResponse;
 import com.sas.alex.service.AdminService;
 import com.sas.alex.service.TestService;
@@ -27,6 +28,13 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+
+    @GetMapping("/allAttempt")
+    @ApiOperation("Вернёт все вопросы")
+    public ResponseEntity<AttemptResponse> attempts(){
+        return ResponseEntity.ok(new AttemptResponse(testService.getAllAttempt()));
+    }
 
     @GetMapping("/questions")
     @ApiOperation("Вернёт все вопросы")

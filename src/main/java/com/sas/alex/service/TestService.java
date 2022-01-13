@@ -139,5 +139,9 @@ public class TestService {
         return answerRepository.findAll();
     }
 
+    public  List<Attempt> getAllAttempt(){
+        return attemptRepository.findAll();
+    }
+
 
 }
